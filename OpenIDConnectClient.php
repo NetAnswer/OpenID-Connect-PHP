@@ -442,7 +442,7 @@ class OpenIDConnectClient
         $token_endpoint = $this->getProviderConfigValue("token_endpoint");
         $token_endpoint_auth_methods_supported = $this->getProviderConfigValue("token_endpoint_auth_methods_supported");
 
-        $headers = [];
+        $headers = array();
 
         $grant_type = "authorization_code";
 
@@ -456,7 +456,7 @@ class OpenIDConnectClient
 
         # Consider Basic authentication if provider config is set this way
         if (in_array('client_secret_basic', $token_endpoint_auth_methods_supported)) {
-            $headers = ['Authorization: Basic ' . base64_encode($this->clientID . ':' . $this->clientSecret)];
+            $headers = array('Authorization: Basic ' . base64_encode($this->clientID . ':' . $this->clientSecret));
             unset($token_params['client_secret']);
         }
 
