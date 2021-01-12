@@ -273,6 +273,14 @@ class OpenIDConnectClient
         $this->authParams = array_merge($this->authParams, (array)$param);
     }
 
+	public function setProviderConfig($params) {
+		$this->providerConfig = $params;
+	}
+
+	public function getProviderConfig($param) {
+		return $this->providerConfig;
+	}
+	
     /**
      * Get's anything that we need configuration wise including endpoints, and other values
      *
