@@ -95,67 +95,67 @@ class OpenIDConnectClient
     /**
      * @var string arbitrary id value
      */
-    private $clientID;
+    protected $clientID;
 
     /*
      * @var string arbitrary name value
      */
-    private $clientName;
+	protected $clientName;
 
     /**
      * @var string arbitrary secret value
      */
-    private $clientSecret;
+	protected $clientSecret;
 
     /**
      * @var array holds the provider configuration
      */
-    private $providerConfig = array();
+	protected $providerConfig = array();
 
     /**
      * @var string http proxy if necessary
      */
-    private $httpProxy;
+	protected $httpProxy;
 
     /**
      * @var string full system path to the SSL certificate
      */
-    private $certPath;
+	protected $certPath;
 
     /**
      * @var string if we aquire an access token it will be stored here
      */
-    private $accessToken;
+	protected $accessToken;
 
     /**
      * @var string if we aquire a refresh token it will be stored here
      */
-    private $refreshToken;
+	protected $refreshToken;
 
     /** 
      * @var string if we acquire an id token it will be stored here
      */
-    private $idToken;
+	protected $idToken;
 
     /**
      * @var array holds scopes
      */
-    private $scopes = array();
+	protected $scopes = array();
     
     /**
      * @var array holds response types
      */
-    private $responseTypes = array();
+	protected $responseTypes = array();
 
     /**
      * @var array holds a cache of info returned from the user info endpoint
      */
-    private $userInfo = array();
+	protected $userInfo = array();
 
     /**
      * @var array holds authentication parameters
      */
-    private $authParams = array();
+    protected $authParams = array();
 
     /**
      * @param $provider_url string optional
@@ -281,7 +281,7 @@ class OpenIDConnectClient
      * @return string
      *
      */
-    private function getProviderConfigValue($param) {
+    protected function getProviderConfigValue($param) {
 
         // If the configuration value is not available, attempt to fetch it from a well known config endpoint
         // This is also known as auto "discovery"
@@ -391,7 +391,7 @@ class OpenIDConnectClient
      * Start Here
      * @return void
      */
-    private function requestAuthorization() {
+	protected function requestAuthorization() {
 
         $auth_endpoint = $this->getProviderConfigValue("authorization_endpoint");
 
@@ -553,7 +553,7 @@ class OpenIDConnectClient
      * @throws OpenIDConnectClientException
      * @return bool
      */
-    private function verifyJWTsignature($jwt) {
+    protected function verifyJWTsignature($jwt) {
         $parts = explode(".", $jwt);
         $signature = base64url_decode(array_pop($parts));
         $header = json_decode(base64url_decode($parts[0]));
